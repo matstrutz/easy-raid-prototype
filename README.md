@@ -27,7 +27,7 @@ Day and hour of each party
 Raids with a min numbers of supports
 </li>
 <li>
-Better logistic in generation parties
+Better logistic in generating parties
 </li>
 <li>
 Max number of same class per party
