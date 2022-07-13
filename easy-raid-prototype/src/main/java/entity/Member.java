@@ -26,4 +26,8 @@ public class Member {
     private String knowledge;
 
     private List<String> hour;
+
+    public Boolean isSupport(List<String> supportsClass){
+        return supportsClass.contains(className) ? Boolean.TRUE : Boolean.FALSE;
+    }
 }

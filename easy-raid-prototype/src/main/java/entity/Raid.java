@@ -26,18 +26,18 @@ public class Raid {
 
     private String difficulty;
 
-    public Boolean hasMaxSupport(List<String> supports, Integer maxValue){
+    public Boolean hasExactSupportNumber(List<String> supports, Integer maxValue){
         Integer count = 0;
         for (Member mb: member) {
             if (count >= maxValue){
                 break;
             }
-            if(supports.contains(mb.getClassName())){
+            if(mb.isSupport(supports)){
                 count++;
             }
         }
 
-        if(count < maxValue){
+        if(count <= maxValue){
             return Boolean.FALSE;
         } else {
             return Boolean.TRUE;
@@ -52,6 +52,23 @@ public class Raid {
         if(member.getHour().contains(hour) && member.getDay().contains(day) && member.getDifficulty().equals(difficulty)){
             return Boolean.TRUE;
         }
+        return Boolean.FALSE;
+    }
+
+    public Boolean haxMinSupport(List<String> supports, Integer minValue){
+        Integer count = 0;
+        if(member.size() >= 6){
+            for (Member mb: member) {
+                if(mb.isSupport(supports)){
+                    count++;
+                }
+            }
+        }
+
+        if(count >= minValue){
+            return Boolean.TRUE;
+        }
+
         return Boolean.FALSE;
     }
 }

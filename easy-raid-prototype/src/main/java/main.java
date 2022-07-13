@@ -3,7 +3,11 @@ import entity.Raid;
 import org.apache.commons.lang3.StringUtils;
 import service.Read;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class main {
@@ -42,7 +46,7 @@ public class main {
             for (int i = 0; i < raids.size(); i++) {
                 Boolean isSup = SUPPORT_CLASS.contains(member.getClassName());
                 if ((raids.get(i).validationIfMemberEnter(member)) &&
-                        !((isSup && raids.get(i).hasMaxSupport(SUPPORT_CLASS, calculateQtdSupsPerRaid())) || raids.get(i).maxMemberSize(RAID_SYZE))) {
+                        !(raids.get(i).hasExactSupportNumber(SUPPORT_CLASS, calculateQtdSupsPerRaid()) || raids.get(i).maxMemberSize(RAID_SYZE))) {
                     raids.get(i).getMember().add(member);
                     needsNewRaid.set(Boolean.FALSE);
                     break;
@@ -98,6 +102,7 @@ public class main {
             sb.append(raid.getName()).append(" ")
                     .append(raid.getDifficulty()).append(" ")
                     .append(raid.getHour()).append(" ")
+                    .append(raid.getDay()).append(" ")
                     .append("ESQUADRÃO").append(" ").append(raid.getSquad());
             sb.append("\n\n");
             sb.append(basicTitlePad("Nome"))
